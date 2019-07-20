@@ -2,20 +2,23 @@ var fs = require('fs');
 var parse = require('csv-parse');
  
 var inputFile='input.tbd';
-console.log("Processing Countries file");
  
 var parser = parse({delimiter: '|'}, function (err, data) {
-    // when all countries are available,then process them
-    // note: array element at index 0 contains the row of headers that we should skip
     data.forEach(function(line) {
-      // create country object out of parsed fields
-      var country = { "name" : line[0]
-                    , "code" : line[1]
-                    , "continent" : line[2]
-                    , "population" : line[3]
-                    , "size" : line[4]
+
+      var payment = { "checkNumber" : line[1].trim()
+                    , "paymentID" : line[2].trim()
+                    , "checkDate" : line[3].trim()
+                    , "amount" : line[4].trim()
+                    , "activity" : line[5].trim()
+					, "activityAction" : line[6].trim()
+					, "activityDate" : line[7].trim()
+                    , "stopReason" : line[8].trim()
+                    , "operationID" : line[9].trim()
+                    , "policyNumber" : line[10].trim()
+					, "checkName" : line[11].trim()
                     };
-     console.log(JSON.stringify(country));
+     console.log(JSON.stringify(payment));
     });    
 });
  
